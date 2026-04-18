@@ -4,8 +4,10 @@ import './employees-list.css'
 const EmployeesList = ({data})=>{
 
 const elements = data.map((item)=>{
+
+    const {id, ...itemProps} = item   ////destructurization,  id from props
     return(
-     <EmployeesListItem {...item} />///name={item.name} salary ={item.salary} increase = {item.increase}
+     <EmployeesListItem key = {id} {...itemProps} />///name={item.name} salary ={item.salary} increase = {item.increase}
  
     )
 })
