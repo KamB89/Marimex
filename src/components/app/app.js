@@ -8,10 +8,10 @@ import EmployeesAddForm from '../employees-add-form/employees-add-form.js';
 function App(){
     
     const data = [
-        {name: 'Michal Ondomiší', salary: 50000 ,increase : true, id: 1},
-        {name: 'Josef Pesze' , salary: 32000  ,increase : false, id: 2},
-        {name: 'Jakub Pavlik', salary: 32000  ,increase : false, id: 3},
-        {name: 'Elnur Akhundov', salary: 30000, increase : false,id: 4}
+        {name: 'Michal Ondomiší', salary: 50000 ,increase : true, id: 1 , rise : false},
+        {name: 'Josef Pesze' , salary: 32000  ,increase : false, id: 2 , rise : false},
+        {name: 'Jakub Pavlik', salary: 32000  ,increase : false, id: 3 , rise : false},
+        {name: 'Elnur Akhundov', salary: 30000, increase : false,id: 4 , rise : false}
     ]
 
     return(
