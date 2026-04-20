@@ -1,17 +1,60 @@
 import './employees-add-form.css'
+import { Component } from 'react'
 
-const EmployeesAddForm = ()=>{
+
+class EmployeesAddForm  extends Component{
+ constructor(props){
+    super(props)
+    this.state ={
+   name: '',
+   salary: '',
+   
+    }
+ }
+
+onValueChanges =(e)=>{
+this.setState({
+[e.target.name] : e.target.value,
+[e.target.salary] : e.target.value
+})
+
+
+}
+
+onSubmit =(e)=>{
+    e.preventDefault();
+    const{name, salary} = this.state
+    if(!name || !salary)return;
+
+    this.props.onAdd(name, salary)
+    
+    this.setState({
+      name: '',
+      salary: ''
+    });
+        
+    
+
+}
+
+
+
+
+
+
+ render(){
+     const{name, salary} = this.state
+
     return(
                 <div className="app-add-form">
             <h3>Přidejte nového zaměstnance</h3>
-            <form
+            <form onSubmit={this.onSubmit}
                 className="add-form d-flex">
                 <input type="text"
                     className="form-control new-post-label"
-                    placeholder="Jmeno a přimení" />
-                <input type="number"
-                    className="form-control new-post-label"
-                    placeholder="Mzda kč?" />
+                    placeholder="Jmeno a přimení" onChange={this.onValueChanges} name = 'name' value = {name}/>
+                <input type="number"className="form-control new-post-label"
+                    placeholder="Mzda kč?" onChange={this.onValueChanges} name = 'salary' value = {salary} />
 
                 <button type="submit"
                         className="btn btn-outline-light">Přidat</button>
@@ -19,6 +62,11 @@ const EmployeesAddForm = ()=>{
         </div>
 
     )
+ }
+
+
+
+    
 }
 
 export default EmployeesAddForm
