@@ -42,13 +42,66 @@ class App extends Component{
     data: [...data, newItem]
   }));
 };
+
+
+onToggleIncrease =(id)=>{
+  this.setState(({data}) => ({
+    data: data.map(item => {
+      if(item.id === id){
+        return{...item, increase: !item.increase}
+
+      }
+
+      return item
+
+    })
+  }))
+
+}
+
+onToggleRise = (id) =>{
+  this.setState(({data})=>({
+    data: data.map(item=>{
+      if(item.id === id){
+        return{ ...item, rise: !item.rise}
+      }
+      return item
+    })
+  }))}
+
+
+employeesCount =()=>{
+const count = this.state.data.length
+
+return count
+   
+
+  }
+
+increaseList =()=>{
+  const newArr = []
+     this.state.data.forEach(item => {
+   if(item.increase){
+    newArr.push(item.name) 
+  }
+});
+  
+
+ return newArr.join(', ') 
+}  
+
+
+
     
 
 
       render(){
             return(
    <div className="app">
-   <AppInfo/>
+   <AppInfo
+   employeesCount = {this.employeesCount()}
+   increaseList = {this.increaseList()}
+   />
 
 
    <div className="search-panel">
@@ -56,7 +109,11 @@ class App extends Component{
     <AppFilter/>
 
    </div>
-   <EmployeesList data= {this.state.data} onDelete ={this.onDelete}/>
+   <EmployeesList
+    data= {this.state.data} 
+    onDelete ={this.onDelete}
+    onToggleIncrease = {this.onToggleIncrease}
+    onToggleRise = {this.onToggleRise}/>
    <EmployeesAddForm  onAdd = {this.onAdd}/>
    
 
