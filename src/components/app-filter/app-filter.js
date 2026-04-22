@@ -1,6 +1,8 @@
 import './app-filter.css'
 
-const AppFilter = ()=>{
+const AppFilter = (props)=>{
+
+    const{onIncreaseList} = props
 return(
 
     <div className="btn-group">
@@ -12,7 +14,8 @@ type = "button">
 
 <button 
 className="btn btn-outline-light"
-type = "button">
+type = "button"
+onClick={onIncreaseList}>
 Zaměstnanci na povýšení</button>
 
 <button 

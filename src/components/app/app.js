@@ -15,8 +15,10 @@ class App extends Component{
         {name: 'Michal Ondomiší', salary: 50000 ,increase : true, id: 1 , rise : false},
         {name: 'Josef Pesze' , salary: 32000  ,increase : false, id: 2 , rise : false},
         {name: 'Jakub Pavlik', salary: 32000  ,increase : false, id: 3 , rise : false},
-        {name: 'Elnur Akhundov', salary: 30000, increase : false,id: 4 , rise : false}
-    ]
+        {name: 'Elnur Akhundov', salary: 30000, increase : false,id: 4 , rise : false},
+                ],
+        term : '',
+        filter: ''        
 
     }
    }
@@ -91,11 +93,42 @@ increaseList =()=>{
 }  
 
 
+visibleList = (items, term) => {
+  if(term.length === 0){
+    return items
+  }
+
+  return items.filter(item => 
+       item.name.indexOf(term) > -1)
+      }
+
+
+
+      searchEmp = (term) =>{  
+       this.setState({term})
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 
 
       render(){
+      const{data, term} = this.state
+      const visible = this.visibleList(data, term)
+
             return(
    <div className="app">
    <AppInfo
@@ -105,15 +138,18 @@ increaseList =()=>{
 
 
    <div className="search-panel">
-    <SearchPanel/>
-    <AppFilter/>
+    <SearchPanel 
+    searchEmp = {this.searchEmp}/>
+    <AppFilter 
+    onIncreaseList = {this.onIncreaseList()}/>
 
    </div>
    <EmployeesList
-    data= {this.state.data} 
+    data= {visible} 
     onDelete ={this.onDelete}
     onToggleIncrease = {this.onToggleIncrease}
-    onToggleRise = {this.onToggleRise}/>
+    onToggleRise = {this.onToggleRise}
+    visible = {visible}/>
    <EmployeesAddForm  onAdd = {this.onAdd}/>
    
 
